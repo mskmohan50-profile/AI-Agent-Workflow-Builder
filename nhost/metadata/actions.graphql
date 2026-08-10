@@ -1,0 +1,11 @@
+type Mutation {
+  # Manual trigger entry point (also called internally by the webhook,
+  # scheduled, and event-trigger receivers on the caller's behalf).
+  triggerWorkflowRun(workflow_id: uuid!): TriggerWorkflowRunOutput
+
+  # Resumes a run paused at an approval_gate step. The handler checks
+  # the caller's org role before doing anything — this can't be a plain
+  # row permission because it's a mid-execution decision (resume the
+  # engine), not a row read/write.
+  approveStep(step_run_id: uuid!, approve: Boolean!): ApproveStepOutput
+}

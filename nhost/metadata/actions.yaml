@@ -1,0 +1,49 @@
+actions:
+  - name: triggerWorkflowRun
+    definition:
+      kind: synchronous
+      handler: '{{ACTIONS_BASE_URL}}/triggerWorkflowRun'
+      forward_client_headers: true
+      headers:
+        - name: X-Hasura-Action-Secret
+          value_from_env: ACTIONS_SECRET
+      request_transform:
+        method: POST
+        url: '{{$base_url}}'
+        body:
+          action: '{{$body.action}}'
+          input: '{{$body.input}}'
+          session_variables: '{{$body.session_variables}}'
+    permissions:
+      - role: user
+
+  - name: approveStep
+    definition:
+      kind: synchronous
+      handler: '{{ACTIONS_BASE_URL}}/approveStep'
+      forward_client_headers: true
+      headers:
+        - name: X-Hasura-Action-Secret
+          value_from_env: ACTIONS_SECRET
+    permissions:
+      - role: user
+
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+    - name: TriggerWorkflowRunOutput
+      fields:
+        - name: workflow_run_id
+          type: uuid!
+        - name: status
+          type: String!
+    - name: ApproveStepOutput
+      fields:
+        - name: step_run_id
+          type: uuid!
+        - name: workflow_run_id
+          type: uuid!
+        - name: status
+          type: String!
+  scalars: []

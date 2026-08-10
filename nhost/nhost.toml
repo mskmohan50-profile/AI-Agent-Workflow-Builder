@@ -1,0 +1,19 @@
+[hasura]
+version = "v2.36.0"
+adminSecret = "nhost-admin-secret"
+
+[hasura.jwtSecret]
+type = "HS256"
+key = "developmentsecretdevelopmentsecret"
+
+[postgres]
+version = "14.6-20230406-1"
+
+[auth]
+version = "0.24.0"
+
+[auth.email]
+enabled = true
+
+[[auth.method.emailPassword]]
+enabled = true

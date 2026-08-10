@@ -1,0 +1,12 @@
+- name: scan_scheduled_workflow_triggers
+  webhook: '{{ACTIONS_BASE_URL}}/scheduledRunner'
+  schedule: '* * * * *'
+  include_in_metadata: true
+  payload: {}
+  headers:
+    - name: X-Hasura-Action-Secret
+      value_from_env: ACTIONS_SECRET
+  retry_conf:
+    num_retries: 1
+    timeout_seconds: 30
+    tolerance_seconds: 21600
