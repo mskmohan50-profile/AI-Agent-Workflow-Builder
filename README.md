@@ -120,20 +120,4 @@ The application uses two authorization layers:
 1. **Hasura row permissions** — users can only access data belonging to their organization.
 2. **Step-level authorization** — sensitive workflow steps and approval actions require appropriate roles.
 
-## Demo Accounts
-
-```text
-Owner:  owner.a@demo.dev
-Editor: editor.a@demo.dev
-Viewer: viewer.b@demo.dev
-```
-
 Use the seeded accounts to test organization isolation and workflow permissions.
-
-## Notes
-
-For local development, the backend can run with a Groq stub when no API key is available.
-
-For production, the synchronous workflow engine can be replaced with a background queue/worker architecture.
-
-> **Security:** Never commit `.env`, API keys, admin secrets, or credentials to GitHub.
